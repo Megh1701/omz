@@ -8,6 +8,7 @@ import  TestimonialsSection  from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import {MarkerMap} from "@/components/Mapcn"
 import ServicesSection from "@/components/Services";
+import ContactForm  from "@/components/ContactForm";
 export default function Home() {
   return (<>
     <Hero></Hero>
@@ -19,8 +20,8 @@ export default function Home() {
     <Faq></Faq>
     <MouseTail></MouseTail>
     <MarkerMap></MarkerMap>
+  
     <Footer></Footer>
-    
   </>
   );
 }

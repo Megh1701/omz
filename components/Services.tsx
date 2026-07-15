@@ -9,7 +9,7 @@ const services = [
     title: "Insurance",
     description: "Protect what matters most with comprehensive coverage solutions.",
     icon: Shield,
-    href: "/services/insurance",
+    href: "/products/insurance",
     highlight: "Family Protection",
     highlightLabel: "Secure Tomorrow",
   },
@@ -18,7 +18,7 @@ const services = [
     title: "Mutual Funds",
     description: "Expert-managed portfolios for long-term wealth creation.",
     icon: TrendingUp,
-    href: "/services/mutual-funds",
+    href: "/products/mutual-funds",
     highlight: "Goal-based Investing",
     highlightLabel: "Wealth Planning",
   },
@@ -27,7 +27,7 @@ const services = [
     title: "Loans",
     description: "Flexible financing with competitive rates for every need.",
     icon: Landmark,
-    href: "/services/loans",
+    href: "/products/loans",
     highlight: "Quick Assistance",
     highlightLabel: "Hassle-free Process",
   },
@@ -36,7 +36,7 @@ const services = [
     title: "Stock Broking",
     description: "Real-time trading with advanced market analytics.",
     icon: LineChart,
-    href: "/services/stock-broking",
+    href: "/products/stock-broking",
     highlight: "Smart Trading",
     highlightLabel: "Informed Decisions",
   },
@@ -45,7 +45,7 @@ const services = [
     title: "Bonds",
     description: "Secure fixed-income for capital preservation.",
     icon: FileText,
-    href: "/services/bonds",
+    href: "/products/bonds",
     highlight: "Stable Income",
     highlightLabel: "Low Volatility",
   },
@@ -54,23 +54,22 @@ const services = [
     title: "Fixed Deposits",
     description: "Guaranteed returns with flexible tenure options.",
     icon: PiggyBank,
-    href: "/services/fixed-deposits",
+    href: "/products/fixed-deposits",
     highlight: "Safe Returns",
     highlightLabel: "Capital Protection",
   },
 ]
 function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const cardRef = useRef<HTMLAnchorElement>(null)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!cardRef.current) return
     const rect = cardRef.current.getBoundingClientRect()
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    })
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    cardRef.current.style.setProperty("--mouse-x", `${x}px`)
+    cardRef.current.style.setProperty("--mouse-y", `${y}px`)
   }
 
   const Icon = service.icon
@@ -91,9 +90,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
-          background: isHovered
-            ? `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.06), transparent 40%)`
-            : "none",
+          background: "radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255,255,255,0.06), transparent 40%)",
         }}
         aria-hidden="true"
       />
@@ -101,9 +98,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       <div
         className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
-          background: isHovered
-            ? `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.1), transparent 40%)`
-            : "none",
+          background: "radial-gradient(300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255,255,255,0.1), transparent 40%)",
           WebkitMaskImage: "linear-gradient(black, black) content-box, linear-gradient(black, black)",
           WebkitMaskComposite: "xor",
           maskComposite: "exclude",
@@ -115,16 +110,16 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       <div className="relative p-6 sm:p-8">
         <div className="relative mb-8">
           <div className="relative flex h-14 w-14 items-center justify-center">
-         
+
             <div className="absolute inset-0 rounded-xl bg-foreground/5 transition-transform duration-700 group-hover:scale-110" />
-            <div 
+            <div
               className="absolute inset-0 rounded-xl bg-foreground/5 opacity-0 transition-all duration-700 group-hover:scale-125 group-hover:opacity-100"
               style={{ transitionDelay: "100ms" }}
             />
-            <Icon 
-              className="relative z-10 h-7 w-7 text-foreground transition-transform duration-500 group-hover:scale-110" 
+            <Icon
+              className="relative z-10 h-7 w-7 text-foreground transition-transform duration-500 group-hover:scale-110"
               strokeWidth={1.5}
-              aria-hidden="true" 
+              aria-hidden="true"
             />
           </div>
         </div>
@@ -204,8 +199,8 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export default function ServicesSection() {
   return (
-    <section 
-      id="services" 
+    <section
+      id="services"
       aria-labelledby="services-heading"
       className="relative min-h-screen overflow-hidden py-24 md:py-32 bg-black"
     >
@@ -214,7 +209,7 @@ export default function ServicesSection() {
         <div className="absolute -right-1/4 bottom-0 h-[600px] w-[600px] animate-pulse rounded-full bg-gradient-to-tl from-white/[0.02] to-transparent blur-3xl" style={{ animationDelay: "1s" }} />
       </div>
 
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
@@ -224,17 +219,11 @@ export default function ServicesSection() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-     
+
         <header className="mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-muted-foreground backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
-            Trusted by 50,000+ investors
-          </div>
-          
-          <h2 
+
+
+          <h2
             id="services-heading"
             className="text-balance text-4xl font-light tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
           >
@@ -244,7 +233,7 @@ export default function ServicesSection() {
               <span className="absolute -inset-1 -skew-y-1 bg-gradient-to-r from-foreground/10 to-transparent" aria-hidden="true" />
             </span>
           </h2>
-          
+
           <p className={`${normalFont.className} mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg`}>
             Comprehensive financial solutions designed to secure your future and maximize your investment potential.
           </p>
@@ -271,7 +260,7 @@ export default function ServicesSection() {
           </div>
         </div> */}
 
-        <div 
+        <div
           className="mt-16 grid gap-4 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-6"
           role="list"
           aria-label="Financial services offered"
@@ -281,7 +270,7 @@ export default function ServicesSection() {
           ))}
         </div>
 
-      
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

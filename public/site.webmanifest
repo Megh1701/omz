@@ -1,0 +1,50 @@
+{
+  "name": "OMZ — Invest Smarter",
+  "short_name": "OMZ",
+  "description": "Your all-in-one platform for insurance, loans, mutual funds, and stock broking.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#030303",
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/omzlogo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/omzlogo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": [
+    "finance",
+    "business"
+  ],
+  "shortcuts": [
+    {
+      "name": "Insurance Plans",
+      "url": "/products/insurance",
+      "description": "Browse and compare insurance plans"
+    },
+    {
+      "name": "Mutual Funds",
+      "url": "/products/mutual-funds",
+      "description": "Start your SIP or lump-sum investment"
+    },
+    {
+      "name": "EMI Calculator",
+      "url": "/calculator/emi",
+      "description": "Calculate your loan EMI"
+    }
+  ]
+}

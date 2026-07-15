@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { normalFont, titleFont } from "@/app/fonts"
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts"
-import { Calculator, TrendingUp, Wallet, Sparkles } from "lucide-react"
+import { Calculator, TrendingUp, Wallet, Sparkles, TriangleAlert } from "lucide-react"
 
 
 const COLORS = {
@@ -207,7 +207,7 @@ function ChartLegend({
           </div>
           <span
             className="text-sm font-bold transition-all duration-300"
-            style={{ color: colors[index-1] }}
+            style={{ color: colors[index - 1] }}
           >
             {formatCurrency(item.value)}
           </span>
@@ -343,12 +343,12 @@ function EMICalculator() {
     }
   }, [loanAmount, interestRate, tenure])
 
-const chartData = [
-  { name: "Principal Amount ", value: results.principal  },
-  { name: "Total Interest",value: results.totalInterest },
-]
+  const chartData = [
+    { name: "Principal Amount ", value: results.principal },
+    { name: "Total Interest", value: results.totalInterest },
+  ]
 
-const chartColors = [COLORS.gold, COLORS.silver]
+  const chartColors = [COLORS.gold, COLORS.silver]
 
   return (
     <div className="grid gap-10 lg:grid-cols-2">
@@ -700,8 +700,10 @@ export default function FinancialCalculatorDashboard({
         </div>
 
         {/* Footer Disclaimer */}
-        <footer className="mt-8 text-center">
-          <p className="text-xs text-[#5A5A5A]">
+        <footer className="mt-8 text-center flex gap-1">
+          <TriangleAlert className="text-red-400" />
+          <p className="text-xs text-red-400">
+
             Calculations are for illustrative purposes only. Actual results may vary based on market conditions.
             Please consult a financial advisor before making investment decisions.
           </p>

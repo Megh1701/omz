@@ -178,7 +178,7 @@ export default function MouseTail() {
     }}>Wealth.</span> 
 </h1>
         <p className="text-base  text-gray-300 mb-8 max-w-2xl mx-auto text-balance">
-          we helps you to secure your financial future with insurance, loans, and investments.
+          We help you secure your financial future with insurance, loans, and investments.
         </p>
         <button className="bg-white text-black px-8 py-3 rounded-lg cursor-pointer font-semibold hover:bg-gray-200 transition-colors">
           Contact Now

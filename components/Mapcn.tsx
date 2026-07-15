@@ -12,14 +12,16 @@ const locations = [
   {
     id: 1,
     name: "Kalol Office, Gujarat",
+    address: "126/127, City Mall-1, Kalol, Gandhinagar",
     lng: 72.501,
     lat: 23.242,
   },
   {
     id: 2,
     name: "Ahmedabad Office, Gujarat",
-    lng: 72.5714,
-    lat: 23.0225,
+    address: "Vaishnodevi Circle, Ahmedabad",
+    lng: 72.5472,
+    lat: 23.1413,
   },
 ];
 
@@ -45,6 +47,7 @@ export function MarkerMap() {
           >
             <CardHeader>
               <CardTitle className="text-base">{loc.name}</CardTitle>
+              <p className="text-xs text-zinc-400 mt-1">{loc.address}</p>
             </CardHeader>
 
             <CardContent className="p-0">
@@ -59,8 +62,9 @@ export function MarkerMap() {
 
                     <MarkerPopup>
                       <div className="space-y-1 bg-black text-zinc-100">
-                        <p className="font-medium">{loc.name}</p>
-                        <p className="text-xs text-zinc-500">
+                        <p className="font-medium text-sm">{loc.name}</p>
+                        <p className="text-xs text-zinc-400">{loc.address}</p>
+                        <p className="text-[10px] text-zinc-600">
                           {loc.lat.toFixed(4)}, {loc.lng.toFixed(4)}
                         </p>
                       </div>

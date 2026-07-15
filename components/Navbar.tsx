@@ -2,41 +2,46 @@
 import { useState } from 'react'
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
+import overlogo from "../public/overa.png";
 
 type SubItem = { label: string; href?: string; children?: SubItem[] }
 type MenuItem = { label: string; href?: string; children?: SubItem[] }
 
 const PRODUCT_MENU: MenuItem[] = [
     {
-        label: 'SIP',
+        label: 'Insurance',
+        href: '/products/insurance',
         children: [
-            { label: 'Regular SIP', href: '#regular-sip' },
-            { label: 'Flexible SIP', href: '#flexible-sip' },
-            { label: 'Trigger SIP', href: '#trigger-sip' },
+            { label: 'General Insurance', href: '/products/insurance?category=General Insurance' },
+            { label: 'Health Insurance', href: '/products/insurance?category=Health Insurance' },
+            { label: 'Corporate Insurance', href: '/products/insurance?category=Corporate Insurance' },
+            { label: 'Life Insurance', href: '/products/insurance?category=Life Insurance' },
         ],
     },
     {
         label: 'Mutual Funds',
-        children: [
-            { label: 'Equity Funds', href: '#equity-funds' },
-            { label: 'Debt Funds', href: '#debt-funds' },
-            { label: 'Hybrid Funds', href: '#hybrid-funds' },
-        ],
+        href: '/products/mutual-funds',
+
     },
     {
-        label: 'Stocks',
-        children: [
-            { label: 'Large Cap', href: '#large-cap' },
-            { label: 'Mid Cap', href: '#mid-cap' },
-            { label: 'Small Cap', href: '#small-cap' },
-        ],
+        label: 'Loans',
+        href: '/products/loans',
+
+    },
+    {
+        label: 'Stock Broking',
+        href: '/products/stock-broking',
+
     },
     {
         label: 'Bonds',
-        children: [
-            { label: 'Government Bonds', href: '#government-bonds' },
-            { label: 'Corporate Bonds', href: '#corporate-bonds' },
-        ],
+        href: '/products/bonds',
+    },
+    {
+        label: 'Fixed Deposits',
+        href: '/products/fixed-deposits',
+
     },
 ]
 
@@ -47,7 +52,7 @@ export default function Navbar() {
     const [hoveredNav, setHoveredNav] = useState<string | null>(null)
 
     const navItems = [
-        { label: "About Us", href: "/#about" },
+        { label: "About Us", href: "/about" },
         { label: "Products", href: "#", hasDropdown: true },
         { label: "Calculator", href: "/calculator/emi" },
     ]
@@ -60,12 +65,15 @@ export default function Navbar() {
                   bg-gradient-to-r from-neutral-600/20 via-zinc-300 to-neutral-600/20" />
             </div>
 
-            <div className="relative mx-auto max-w-7xl h-20 px-6 flex items-center justify-between">
+            <div className="relative mx-auto max-w-7xl h-24 px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/">
-                    <span className="cursor-pointer text-2xl font-bold text-white">
-                        OMZ
-                    </span>
+                <Link href="/" className="flex items-center">
+                    <Image 
+                        src={overlogo} 
+                        alt="Overa Logo" 
+                        priority 
+                        className="h-16 w-auto object-contain"
+                    />
                 </Link>
                 {/* Center nav */}
                 <div
@@ -77,8 +85,11 @@ export default function Navbar() {
                             key={item.label}
                             className="relative"
                             onMouseEnter={() => {
+
                                 setHoveredNav(item.label)
                                 if (item.hasDropdown) setIsOpen(true)
+
+
                             }}
                             onMouseLeave={() => {
                                 if (item.hasDropdown) {
@@ -122,12 +133,12 @@ export default function Navbar() {
                                                 <div
                                                     key={menuItem.label}
                                                     className="relative"
-                                                    onMouseEnter={() => hasChildren && setActive(menuItem.label)}
+                                                    onMouseEnter={() => setActive(hasChildren ? menuItem.label : null)}
                                                     onMouseLeave={() => setActiveSub(null)}
                                                 >
                                                     {/* Menu item */}
                                                     <Link
-                                                        href={item.href || "#"}
+                                                        href={menuItem.href || "#"}
                                                         className="block relative px-4 py-2.5 rounded-md text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/60 transition-all"
                                                     >
                                                         {/* Text wrapper with padding animation */}
@@ -160,7 +171,7 @@ export default function Navbar() {
                                                             <div className="relative bg-neutral-900/95 backdrop-blur-xl border border-neutral-700/50 rounded-xl shadow-2xl p-2">
                                                                 {menuItem.children!.map((child) => (
                                                                     <Link
-                                                                        href={item.href || "#"}
+                                                                        href={child.href || "#"}
                                                                         key={child.label}
                                                                         className="block px-4 py-2.5 text-sm text-neutral-300 rounded-md hover:text-white hover:bg-neutral-800/60 transition-all"
                                                                     >
@@ -181,16 +192,16 @@ export default function Navbar() {
                 </div>
 
                 {/* Contact Us button */}
-                <button className="relative rounded-3xl py-2 border border-neutral-700 flex justify-center items-center gap-3 w-36 overflow-hidden cursor-pointer group">
+                <Link href="/contact" className="relative rounded-3xl py-2 border border-neutral-700 flex justify-center items-center gap-3 w-36 overflow-hidden cursor-pointer group">
                     {/* Top gradient line */}
-                    <div className="absolute inset-x-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-x-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                     {/* Bottom gradient line */}
-                    <div className="absolute inset-x-0 bottom-0 h-px w-full bg-gradient-to-r from-transparent via-zinc-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-x-0 bottom-0 h-px w-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                     {/* Button text */}
-                    <div className="w-full text-neutral-300 flex items-center justify-center text-sm">Contact Us</div>
-                </button>
+                    <div className="w-full text-neutral-300 flex items-center justify-center text-sm group-hover:text-white transition-colors">Contact Us</div>
+                </Link>
             </div>
         </nav>
     )
