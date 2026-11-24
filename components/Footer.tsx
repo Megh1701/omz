@@ -170,13 +170,13 @@ export default function Footer() {
                 <div className="absolute left-1/2 top-1/2 h-48 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-500/10 blur-3xl" />
               </div>
 
-              <h2 style={{ fontFamily: "var(--font-title)" }} className="text-4xl font-extralight tracking-tight text-zinc-100 sm:text-5xl md:text-6xl lg:text-7xl" >
+              <h2 style={{ fontFamily: "var(--font-title)" }} className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-zinc-100" >
                 <span className="relative inline-block">
                   Empowering
                 </span>
 
                 {/* Dynamic Word Container - TOP to BOTTOM animation */}
-                <span className="relative ml-2 inline-flex h-[1.2em] w-[180px] items-center justify-start overflow-hidden align-bottom sm:ml-4 sm:w-[240px] md:w-[300px] lg:w-[360px]">
+                <span className="relative ml-2 inline-flex h-[1.2em] w-[130px] sm:ml-4 sm:w-[220px] md:w-[300px] lg:w-[360px] items-center justify-start overflow-hidden align-bottom">
                   {/* Single word with phase-based animation */}
                   <span
                     className={`absolute inset-0 flex items-end justify-start font-medium transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${getAnimationClasses()}`}

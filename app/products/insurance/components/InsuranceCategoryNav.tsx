@@ -14,8 +14,8 @@ export default function InsuranceCategoryNav({
   setActiveCategory,
 }: Props) {
   return (
-    <section className="w-full mt-10 overflow-x-auto">
-      <div className=" flex min-w-max items-center justify-center gap-4">
+    <section className="w-full mt-6 sm:mt-10 overflow-x-auto py-2">
+      <div className="flex min-w-max items-center justify-start sm:justify-center gap-2 sm:gap-4 px-4 mx-auto">
         {categories.map((category) => {
           const isActive = activeCategory === category
 

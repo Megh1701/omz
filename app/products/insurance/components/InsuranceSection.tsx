@@ -336,7 +336,7 @@ export default function InsuranceSection() {
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
       />
-      <ProductSection products={mappedProducts} className="mt-10" />
+      <ProductSection products={mappedProducts} className="mt-6 sm:mt-10 pb-12 sm:pb-20" />
     </>
   )
 }

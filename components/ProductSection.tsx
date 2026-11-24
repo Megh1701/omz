@@ -103,6 +103,7 @@ export default function ProductSection({ products, className = '' }: ProductSect
                 <div
                   className={`
                     relative flex items-center justify-center
+                    w-full max-w-sm sm:max-w-md lg:max-w-none mx-auto
                     lg:w-[35%]
                     ${isReverse ? 'lg:order-2' : 'lg:order-1'}
                     px-4 py-4 lg:px-6 lg:py-6
@@ -205,7 +206,7 @@ export default function ProductSection({ products, className = '' }: ProductSect
                 <div
                   className={`
                     relative flex flex-col justify-center
-                    lg:w-[65%]
+                    w-full lg:w-[65%]
                     ${isReverse ? 'lg:order-1' : 'lg:order-2'}
                     px-4 py-4 lg:px-6 lg:py-6
                   `}

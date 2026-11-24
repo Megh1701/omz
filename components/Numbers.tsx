@@ -15,7 +15,7 @@ function Digit({ value, delay = 0 }: { value: number; delay?: number }) {
     <div
       ref={ref}
       className="relative h-10 
-        w-[1.8ch] sm:w-[1.8ch] md:w-[2ch] xl:w-[2.2ch] 
+        w-[1.6ch] sm:w-[1.8ch] md:w-[2ch] xl:w-[2.2ch] 
         overflow-hidden"
     >
       <motion.div
@@ -33,7 +33,7 @@ function Digit({ value, delay = 0 }: { value: number; delay?: number }) {
             style={{ fontFamily: "var(--font-title)" }}
             key={i}
             className="h-10 flex items-center justify-center 
-              text-3xl md:text-4xl font-semibold text-zinc-200"
+              text-2xl sm:text-3xl md:text-4xl font-semibold text-zinc-200"
           >
             {DIGITS[i % 10]}
           </div>
@@ -64,12 +64,12 @@ function Odometer({
       <div className="flex items-end justify-center">
         <span
           style={{ fontFamily: "var(--font-title)" }}
-          className="text-3xl md:text-4xl font-semibold text-zinc-200"
+          className="text-2xl sm:text-3xl md:text-4xl font-semibold text-zinc-200"
         >
           {value.toLocaleString("en-IN")}
         </span>
         {suffix && (
-          <span className="ml-1 text-lg md:text-xl font-medium text-zinc-400">
+          <span className="ml-1 text-base sm:text-lg md:text-xl font-medium text-zinc-400">
             {suffix}
           </span>
         )}
@@ -83,7 +83,7 @@ function Odometer({
         isNaN(Number(char)) ? (
           <span
             key={idx}
-            className="w-[0.6ch] text-3xl md:text-4xl font-semibold 
+            className="w-[0.6ch] text-2xl sm:text-3xl md:text-4xl font-semibold 
               text-zinc-200 text-center"
           >
             {char}
@@ -94,7 +94,7 @@ function Odometer({
       )}
 
       {suffix && (
-        <span className="ml-1 text-lg md:text-xl font-medium text-zinc-400">
+        <span className="ml-1 text-base sm:text-lg md:text-xl font-medium text-zinc-400">
           {suffix}
         </span>
       )}
@@ -112,20 +112,20 @@ export default function Numbers() {
   ];
 
   return (
-    <section className="w-full py-24 bg-black">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="w-full py-14 sm:py-20 md:py-24 bg-black">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2
-          className="text-center text-4xl font-semibold mb-16 text-zinc-200"
+          className="text-center text-2xl sm:text-3xl md:text-4xl font-semibold mb-10 md:mb-16 text-zinc-200"
           style={{ fontFamily: "var(--font-title)" }}
         >
           Our Numbers Says It All
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-14">
           {stats.map((item, idx) => (
             <div key={idx} className="text-center ">
               <Odometer value={item.value} suffix={item.suffix} />
-              <p className={`${normalFont.className} mt-4 text-sm text-zinc-300`}>
+              <p className={`${normalFont.className} mt-3 sm:mt-4 text-xs sm:text-sm text-zinc-300`}>
                 {item.label}
               </p>
             </div>

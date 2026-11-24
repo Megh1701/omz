@@ -13,20 +13,23 @@ function AccordionItem({ title, children }: AccordionItemProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="py-2">
+    <div className="py-2 border-b border-neutral-800/60">
       <button
         type="button"
-       className="w-full py-2 text-left cursor-pointer flex items-center select-none"
-           onClick={() => setIsOpen((prev) => !prev)}
+        className="w-full py-2.5 text-left cursor-pointer flex items-center select-none group"
+        onClick={() => setIsOpen((prev) => !prev)}
       >
         <motion.div
           animate={{ rotate: isOpen ? 90 : 0 }}
           transition={{ type: "spring", stiffness: 150, damping: 12 }}
+          className="shrink-0"
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4 text-neutral-400 group-hover:text-white transition-colors" />
         </motion.div>
 
-        <div className={`${normalFont.className} ml-2 font-bold text-white `}>{title}</div>
+        <div className={`${normalFont.className} ml-3 font-medium text-base sm:text-lg text-white group-hover:text-neutral-200 transition-colors`}>
+          {title}
+        </div>
       </button>
 
       <motion.div
@@ -39,12 +42,15 @@ function AccordionItem({ title, children }: AccordionItemProps) {
           height: isOpen ? "auto" : 0,
         }}
         transition={{
-          duration: 0.5,
+          duration: 0.4,
           ease: isOpen ? [0.25, 1, 0.5, 1] : [0.3, 0, 0.3, 1],
         }}
         className="overflow-hidden"
       >
-        <motion.div className={`${normalFont.className} pl-6 pr-2 select-none text-neutral-400 cursor-pointer`}  onClick={() => setIsOpen((prev) => !prev)}>
+        <motion.div
+          className={`${normalFont.className} pl-7 pr-2 pb-3 text-sm sm:text-base leading-relaxed select-none text-neutral-400 cursor-pointer`}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
           {children}
         </motion.div>
       </motion.div>
@@ -83,20 +89,22 @@ const faqData = [
 
 export default function Faq() {
   return (
-    <div className="w-full h-screen flex items-center justify-evenly bg-black text-white">
-    
-
-      <div className="flex w-1/2 flex-col h-auto text-xl pl-[10%]">
-        {faqData.map((item, index) => (
-          <AccordionItem key={index} title={item.title}>
-            {item.description}
-          </AccordionItem>
-        ))}
+    <section className="w-full min-h-[70vh] flex items-center bg-black text-white py-16 sm:py-20 md:py-28">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-16">
+        <div className="flex w-full lg:w-3/5 flex-col h-auto">
+          {faqData.map((item, index) => (
+            <AccordionItem key={index} title={item.title}>
+              {item.description}
+            </AccordionItem>
+          ))}
+        </div>
+        <h2
+          className="text-3xl sm:text-5xl lg:text-6xl text-center lg:text-left w-full lg:w-2/5 font-light"
+          style={{ fontFamily: "var(--font-title)" }}
+        >
+          Frequently Asked <br className="hidden sm:inline" />Questions
+        </h2>
       </div>
-        <h1 className="text-6xl items-start flex w-1/2 pl-[15%]" 
-          style={{ fontFamily: "var(--font-title)" }}>
-        Frequently Asked <br />Questions
-      </h1>
-    </div>
+    </section>
   );
 }

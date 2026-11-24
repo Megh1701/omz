@@ -155,7 +155,7 @@ export default function MouseTail() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-screen h-screen bg-black overflow-hidden flex items-center justify-center"
+      className="relative w-full min-h-[60vh] sm:min-h-[80vh] md:min-h-screen bg-black overflow-hidden flex items-center justify-center py-16 sm:py-20"
     >
     
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_70%)]" />
@@ -167,29 +167,30 @@ export default function MouseTail() {
       </AnimatePresence>
 
       {/* Centered Content with Higher Z-Index */}
-      <div className="relative z-50 text-center px-6">
-       <h1  style={{
-  fontFamily: "var(--font-title)",
-  textShadow:
-    "0 0 5px rgba(255,255,255,0.4), 0 0 20px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.2)",
-}}
- className="text-5xl md:text-6xl font-bold text-white mb-4 text-balance">
-  Grow your <span className='italic' style={{
-    }}>Wealth.</span> 
-</h1>
-        <p className="text-base  text-gray-300 mb-8 max-w-2xl mx-auto text-balance">
+      <div className="relative z-30 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+        <h2
+          style={{
+            fontFamily: "var(--font-title)",
+            textShadow:
+              "0 0 5px rgba(255,255,255,0.4), 0 0 20px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.2)",
+          }}
+          className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 text-balance"
+        >
+          Grow your <span className="italic">Wealth.</span>
+        </h2>
+        <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto text-balance font-light">
           We help you secure your financial future with insurance, loans, and investments.
         </p>
-        <button className="bg-white text-black px-8 py-3 rounded-lg cursor-pointer font-semibold hover:bg-gray-200 transition-colors">
+        <a
+          href="/contact"
+          className="inline-block bg-white text-black px-6 sm:px-8 py-2.5 sm:py-3 rounded-full cursor-pointer text-sm sm:text-base font-semibold hover:bg-gray-200 transition-colors"
+        >
           Contact Now
-        </button>
+        </a>
       </div>
 
-        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black via-black/20 to-transparent z-20 pointer-events-none" />
-
-
-         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/70 to-transparent z-20 pointer-events-none" />
-
+      <div className="absolute top-0 left-0 right-0 h-28 sm:h-40 bg-gradient-to-b from-black via-black/20 to-transparent z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-28 sm:h-40 bg-gradient-to-t from-black via-black/70 to-transparent z-20 pointer-events-none" />
     </div>
   )
 }

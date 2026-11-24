@@ -1,8 +1,9 @@
 'use client'
 import { useState } from 'react'
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
+import { Menu, X, ChevronDown } from "lucide-react"
 import overlogo from "../public/overa.png";
 
 type SubItem = { label: string; href?: string; children?: SubItem[] }
@@ -50,34 +51,45 @@ export default function Navbar() {
     const [active, setActive] = useState<string | null>(null)
     const [activeSub, setActiveSub] = useState<string | null>(null)
     const [hoveredNav, setHoveredNav] = useState<string | null>(null)
+    const [mobileOpen, setMobileOpen] = useState(false)
+    const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+    const [mobileInsuranceOpen, setMobileInsuranceOpen] = useState(false)
 
     const navItems = [
         { label: "About Us", href: "/about" },
         { label: "Products", href: "#", hasDropdown: true },
         { label: "Calculator", href: "/calculator/emi" },
     ]
+
+    const closeAll = () => {
+        setMobileOpen(false)
+        setMobileProductsOpen(false)
+        setMobileInsuranceOpen(false)
+    }
+
     return (
-        <nav className="sticky top-0 z-100 w-full">
+        <nav className="sticky top-0 z-50 w-full">
             {/* Glass navbar backdrop */}
-            <div className="absolute inset-0 bg-neutral-950/80 backdrop-blur-xl">
+            <div className="absolute inset-0 bg-neutral-950/85 backdrop-blur-xl">
                 {/* Glowing bottom border */}
                 <div className="absolute bottom-0 left-0 w-full h-[1px] 
-                  bg-gradient-to-r from-neutral-600/20 via-zinc-300 to-neutral-600/20" />
+                  bg-gradient-to-r from-neutral-600/20 via-zinc-300/40 to-neutral-600/20" />
             </div>
 
-            <div className="relative mx-auto max-w-7xl h-24 px-6 flex items-center justify-between">
+            <div className="relative mx-auto max-w-7xl h-16 md:h-24 px-4 sm:px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center">
+                <Link href="/" className="flex items-center" onClick={closeAll}>
                     <Image 
                         src={overlogo} 
                         alt="Overa Logo" 
                         priority 
-                        className="h-16 w-auto object-contain"
+                        className="h-10 sm:h-12 md:h-16 w-auto object-contain transition-all"
                     />
                 </Link>
-                {/* Center nav */}
+
+                {/* Desktop / Tablet Center nav */}
                 <div
-                    className="flex items-center gap-1"
+                    className="hidden md:flex items-center gap-1"
                     onMouseLeave={() => setHoveredNav(null)}
                 >
                     {navItems.map((item) => (
@@ -85,11 +97,8 @@ export default function Navbar() {
                             key={item.label}
                             className="relative"
                             onMouseEnter={() => {
-
                                 setHoveredNav(item.label)
                                 if (item.hasDropdown) setIsOpen(true)
-
-
                             }}
                             onMouseLeave={() => {
                                 if (item.hasDropdown) {
@@ -101,7 +110,7 @@ export default function Navbar() {
                         >
                             <Link
                                 href={item.href || "#"}
-                                className="relative px-4 py-2 text-base font-bold text-neutral-300 hover:text-white transition z-10 block"
+                                className="relative px-4 py-2 text-sm lg:text-base font-bold text-neutral-300 hover:text-white transition z-10 block"
                             >
                                 {hoveredNav === item.label && (
                                     <motion.span
@@ -191,8 +200,8 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                {/* Contact Us button */}
-                <Link href="/contact" className="relative rounded-3xl py-2 border border-neutral-700 flex justify-center items-center gap-3 w-36 overflow-hidden cursor-pointer group">
+                {/* Desktop Contact Us button */}
+                <Link href="/contact" className="hidden md:flex relative rounded-3xl py-2 border border-neutral-700 justify-center items-center gap-3 w-32 lg:w-36 overflow-hidden cursor-pointer group">
                     {/* Top gradient line */}
                     <div className="absolute inset-x-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
@@ -202,7 +211,183 @@ export default function Navbar() {
                     {/* Button text */}
                     <div className="w-full text-neutral-300 flex items-center justify-center text-sm group-hover:text-white transition-colors">Contact Us</div>
                 </Link>
+
+                {/* Mobile Hamburger Toggle Button */}
+                <button
+                    type="button"
+                    onClick={() => setMobileOpen((prev) => !prev)}
+                    className="md:hidden flex items-center justify-center p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-neutral-800/60 transition-colors focus:outline-none"
+                    aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={mobileOpen}
+                >
+                    {mobileOpen ? (
+                        <X className="h-6 w-6 text-white" />
+                    ) : (
+                        <Menu className="h-6 w-6 text-neutral-200" />
+                    )}
+                </button>
             </div>
+
+            {/* Mobile Slide-down Menu */}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="md:hidden overflow-hidden bg-neutral-950/95 backdrop-blur-2xl border-b border-neutral-800 shadow-2xl"
+                    >
+                        <div className="px-6 py-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                            {/* Nav Item: About Us */}
+                            <Link
+                                href="/about"
+                                onClick={closeAll}
+                                className="block py-2 text-base font-semibold text-neutral-200 hover:text-white transition-colors border-b border-neutral-800/60"
+                            >
+                                About Us
+                            </Link>
+
+                            {/* Nav Item: Products Accordion */}
+                            <div className="border-b border-neutral-800/60 pb-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setMobileProductsOpen((prev) => !prev)}
+                                    className="flex items-center justify-between w-full py-2 text-base font-semibold text-neutral-200 hover:text-white transition-colors text-left"
+                                >
+                                    <span>Products</span>
+                                    <ChevronDown
+                                        className={`h-4 w-4 transition-transform duration-300 ${mobileProductsOpen ? "rotate-180" : ""}`}
+                                    />
+                                </button>
+
+                                <AnimatePresence>
+                                    {mobileProductsOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: "auto" }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{ duration: 0.2 }}
+                                            className="overflow-hidden pl-3 pr-1 pt-1 space-y-1.5"
+                                        >
+                                            {/* Insurance with its nested items */}
+                                            <div className="py-1">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setMobileInsuranceOpen((prev) => !prev)}
+                                                    className="flex items-center justify-between w-full py-1.5 text-sm text-neutral-300 hover:text-white transition-colors text-left"
+                                                >
+                                                    <span className="font-medium">Insurance</span>
+                                                    <ChevronDown
+                                                        className={`h-3.5 w-3.5 transition-transform duration-200 ${mobileInsuranceOpen ? "rotate-180" : ""}`}
+                                                    />
+                                                </button>
+                                                {mobileInsuranceOpen && (
+                                                    <div className="pl-3 py-1 space-y-1 border-l border-neutral-800 mt-1">
+                                                        <Link
+                                                            href="/products/insurance"
+                                                            onClick={closeAll}
+                                                            className="block py-1 text-xs text-neutral-400 hover:text-white transition-colors"
+                                                        >
+                                                            Overview
+                                                        </Link>
+                                                        <Link
+                                                            href="/products/insurance?category=General Insurance"
+                                                            onClick={closeAll}
+                                                            className="block py-1 text-xs text-neutral-400 hover:text-white transition-colors"
+                                                        >
+                                                            General Insurance
+                                                        </Link>
+                                                        <Link
+                                                            href="/products/insurance?category=Health Insurance"
+                                                            onClick={closeAll}
+                                                            className="block py-1 text-xs text-neutral-400 hover:text-white transition-colors"
+                                                        >
+                                                            Health Insurance
+                                                        </Link>
+                                                        <Link
+                                                            href="/products/insurance?category=Corporate Insurance"
+                                                            onClick={closeAll}
+                                                            className="block py-1 text-xs text-neutral-400 hover:text-white transition-colors"
+                                                        >
+                                                            Corporate Insurance
+                                                        </Link>
+                                                        <Link
+                                                            href="/products/insurance?category=Life Insurance"
+                                                            onClick={closeAll}
+                                                            className="block py-1 text-xs text-neutral-400 hover:text-white transition-colors"
+                                                        >
+                                                            Life Insurance
+                                                        </Link>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {/* Other product links */}
+                                            <Link
+                                                href="/products/mutual-funds"
+                                                onClick={closeAll}
+                                                className="block py-1.5 text-sm text-neutral-300 hover:text-white transition-colors"
+                                            >
+                                                Mutual Funds
+                                            </Link>
+                                            <Link
+                                                href="/products/loans"
+                                                onClick={closeAll}
+                                                className="block py-1.5 text-sm text-neutral-300 hover:text-white transition-colors"
+                                            >
+                                                Loans
+                                            </Link>
+                                            <Link
+                                                href="/products/stock-broking"
+                                                onClick={closeAll}
+                                                className="block py-1.5 text-sm text-neutral-300 hover:text-white transition-colors"
+                                            >
+                                                Stock Broking
+                                            </Link>
+                                            <Link
+                                                href="/products/bonds"
+                                                onClick={closeAll}
+                                                className="block py-1.5 text-sm text-neutral-300 hover:text-white transition-colors"
+                                            >
+                                                Bonds
+                                            </Link>
+                                            <Link
+                                                href="/products/fixed-deposits"
+                                                onClick={closeAll}
+                                                className="block py-1.5 text-sm text-neutral-300 hover:text-white transition-colors"
+                                            >
+                                                Fixed Deposits
+                                            </Link>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+
+                            {/* Nav Item: Calculator */}
+                            <Link
+                                href="/calculator/emi"
+                                onClick={closeAll}
+                                className="block py-2 text-base font-semibold text-neutral-200 hover:text-white transition-colors border-b border-neutral-800/60"
+                            >
+                                Calculator
+                            </Link>
+
+                            {/* Mobile Contact Us CTA button */}
+                            <div className="pt-3">
+                                <Link
+                                    href="/contact"
+                                    onClick={closeAll}
+                                    className="flex w-full items-center justify-center py-3 rounded-full bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition-colors"
+                                >
+                                    Contact Us
+                                </Link>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     )
 }
+

@@ -107,9 +107,9 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         aria-hidden="true"
       />
 
-      <div className="relative p-6 sm:p-8">
-        <div className="relative mb-8">
-          <div className="relative flex h-14 w-14 items-center justify-center">
+      <div className="relative p-5 sm:p-6 md:p-8">
+        <div className="relative mb-6 sm:mb-8">
+          <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center">
 
             <div className="absolute inset-0 rounded-xl bg-foreground/5 transition-transform duration-700 group-hover:scale-110" />
             <div
@@ -117,33 +117,33 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
               style={{ transitionDelay: "100ms" }}
             />
             <Icon
-              className="relative z-10 h-7 w-7 text-foreground transition-transform duration-500 group-hover:scale-110"
+              className="relative z-10 h-6 w-6 sm:h-7 sm:w-7 text-foreground transition-transform duration-500 group-hover:scale-110"
               strokeWidth={1.5}
               aria-hidden="true"
             />
           </div>
         </div>
 
-        <div className="space-y-3">
-          <h3 className="text-xl font-medium title tracking-tight text-foreground transition-colors duration-300">
+        <div className="space-y-2 sm:space-y-3">
+          <h3 className="text-lg sm:text-xl font-medium title tracking-tight text-foreground transition-colors duration-300">
             {service.title}
           </h3>
-          <p className={`${normalFont.className} text-sm leading-relaxed text-muted-foreground`}>
+          <p className={`${normalFont.className} text-xs sm:text-sm leading-relaxed text-muted-foreground`}>
             {service.description}
           </p>
         </div>
 
-        <div className="mt-6 flex items-end justify-between">
+        <div className="mt-5 sm:mt-6 flex items-end justify-between">
           <div className="translate-y-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-            <p className={`${normalFont.className} text-xl font-semibold tabular-nums tracking-tight text-foreground`}>
+            <p className={`${normalFont.className} text-lg sm:text-xl font-semibold tabular-nums tracking-tight text-foreground`}>
               {service.highlight}
             </p>
             <p className={`${normalFont.className} text-xs text-muted-foreground`}>{service.highlightLabel}</p>
           </div>
 
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-secondary/30 transition-all duration-500 group-hover:border-foreground/20 group-hover:bg-foreground group-hover:text-background">
+          <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border/50 bg-secondary/30 transition-all duration-500 group-hover:border-foreground/20 group-hover:bg-foreground group-hover:text-background">
             <svg
-              className="h-4 w-4 -translate-x-0.5 translate-y-0.5 rotate-45 transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"
+              className="h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-x-0.5 translate-y-0.5 rotate-45 transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -202,7 +202,7 @@ export default function ServicesSection() {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="relative min-h-screen overflow-hidden py-24 md:py-32 bg-black"
+      className="relative min-h-screen overflow-hidden py-16 sm:py-24 md:py-32 bg-black"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute -left-1/4 top-0 h-[500px] w-[500px] animate-pulse rounded-full bg-gradient-to-br from-white/[0.02] to-transparent blur-3xl" />
@@ -225,16 +225,16 @@ export default function ServicesSection() {
 
           <h2
             id="services-heading"
-            className="text-balance text-4xl font-light tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+            className="text-balance text-3xl font-light tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Build wealth with
-            <span className="relative mx-3 inline-block">
+            <span className="relative mx-2 sm:mx-3 inline-block">
               <span className="relative z-10">confidence</span>
               <span className="absolute -inset-1 -skew-y-1 bg-gradient-to-r from-foreground/10 to-transparent" aria-hidden="true" />
             </span>
           </h2>
 
-          <p className={`${normalFont.className} mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg`}>
+          <p className={`${normalFont.className} mx-auto mt-4 sm:mt-6 max-w-xl text-pretty text-sm sm:text-base leading-relaxed text-muted-foreground sm:text-lg px-2`}>
             Comprehensive financial solutions designed to secure your future and maximize your investment potential.
           </p>
         </header>

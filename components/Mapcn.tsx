@@ -27,11 +27,11 @@ const locations = [
 
 export function MarkerMap() {
   return (
-    <div className="space-y-6 bg-black text-zinc-100 p-4">
+    <div className="space-y-6 bg-black text-zinc-100 p-2 sm:p-4">
       {/* Heading Card */}
       <Card className="bg-black border-zinc-800 text-zinc-100">
         <CardHeader>
-          <CardTitle className="text-6xl">Our Offices</CardTitle>
+          <CardTitle className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Our Offices</CardTitle>
           <p className="text-zinc-500 text-sm">
             We operate from two key locations in Gujarat.
           </p>

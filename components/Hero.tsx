@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Instrument_Serif } from "next/font/google";
 
 const instrumentSerif = Instrument_Serif({
@@ -18,9 +18,12 @@ interface Star {
   duration: number;
 }
 
+const heroWords = ["insure.", "invest.", "grow."];
+
 export default function Hero() {
   const [stars, setStars] = useState<Star[]>([]);
   const [isMounted, setIsMounted] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     setIsMounted(true);
@@ -36,6 +39,14 @@ export default function Hero() {
       };
     });
     setStars(generatedStars);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroWords.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -62,23 +73,33 @@ export default function Hero() {
 
       {/* Main Content (Tagline only, no other text or inputs) */}
       <div className="relative z-20 w-full max-w-5xl px-6 text-center flex flex-col items-center pointer-events-none">
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-medium leading-[1.1] tracking-[-0.04em] text-[rgb(240,240,240)] max-w-4xl text-balance"
+          className="flex flex-col items-center"
         >
-          Good things come to those{" "}
-          <span className={`${instrumentSerif.className} font-normal italic pr-1`}>
-            who{" "}
-            <span
-              className="bg-gradient-to-b from-[#ffffff] via-[#e2e8f0] via-[#94a3b8] to-[#475569] bg-clip-text text-transparent font-medium"
-              style={{ filter: "drop-shadow(0 0 12px rgba(255,255,255,0.35)) drop-shadow(0 0 2px rgba(255,255,255,0.7))" }}
-            >
-              invest.
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[76px] font-medium leading-[1.15] tracking-[-0.04em] text-[rgb(240,240,240)]">
+            Good things come to
+          </h1>
+          <p className={`${instrumentSerif.className} text-3xl sm:text-5xl md:text-6xl lg:text-[76px] font-normal italic leading-[1.15] tracking-[-0.02em] text-[rgb(240,240,240)] mt-1`}>
+            those who{" "}
+            <span className="inline-block w-[92px] sm:w-[155px] md:w-[195px] lg:w-[220px] text-left align-baseline">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={heroWords[currentIndex]}
+                  initial={{ y: 20, opacity: 0, filter: "blur(6px)" }}
+                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                  exit={{ y: -20, opacity: 0, filter: "blur(6px)" }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block bg-gradient-to-b from-[#ffffff] via-[#e2e8f0] to-[#94a3b8] bg-clip-text text-transparent"
+                >
+                  {heroWords[currentIndex]}
+                </motion.span>
+              </AnimatePresence>
             </span>
-          </span>
-        </motion.h1>
+          </p>
+        </motion.div>
       </div>
 
       {/* Twinkling Star Field in the Background (sharp, clean stars in the sky) */}
@@ -104,14 +125,14 @@ export default function Hero() {
       )}
 
       {/* Horizon & Space Background Container */}
-      <div className="absolute bottom-0 left-0 w-full h-[400px] pointer-events-none z-10">
+      <div className="absolute bottom-0 left-0 w-full h-[260px] sm:h-[320px] md:h-[400px] pointer-events-none z-10">
 
         {/* Horizon SVG with flush light atmospheric glows and planet body */}
         <svg
           viewBox="0 0 1400 400"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute bottom-0 w-full h-[400px] left-0 z-10"
+          className="absolute bottom-0 w-full h-[260px] sm:h-[320px] md:h-[400px] left-0 z-10"
           preserveAspectRatio="none"
           style={{ overflow: "visible" }}
         >

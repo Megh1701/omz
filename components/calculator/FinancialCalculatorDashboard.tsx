@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
@@ -81,10 +81,19 @@ function DonutChart({
   data: { name: string; value: number }[]
   colors: string[]
 }) {
+  const [mounted, setMounted] = useState(false)
   const total = data.reduce((acc, item) => acc + item.value, 0)
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="relative h-[220px] sm:h-[250px] md:h-[280px] w-full min-w-0" />
+  }
+
   return (
-    <div className="relative h-[280px] w-full">
+    <div className="relative h-[220px] sm:h-[250px] md:h-[280px] w-full min-w-0">
 
       <div className="absolute inset-0 flex items-center justify-center">
         <div
@@ -237,6 +246,41 @@ function CalculatorInput({
   prefix?: string
 }) {
   const [isFocused, setIsFocused] = useState(false)
+  const [inputValue, setInputValue] = useState<string>(value.toString())
+
+  useEffect(() => {
+    if (!isFocused) {
+      setInputValue(value.toString())
+    }
+  }, [value, isFocused])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawVal = e.target.value
+    setInputValue(rawVal)
+
+    if (rawVal === "") return
+
+    const parsed = parseFloat(rawVal)
+    if (!isNaN(parsed)) {
+      const boundedVal = Math.min(max, Math.max(0, parsed))
+      onChange(boundedVal)
+    }
+  }
+
+  const handleInputBlur = () => {
+    setIsFocused(false)
+    const parsed = parseFloat(inputValue)
+    if (isNaN(parsed) || parsed < min) {
+      setInputValue(min.toString())
+      onChange(min)
+    } else if (parsed > max) {
+      setInputValue(max.toString())
+      onChange(max)
+    } else {
+      setInputValue(parsed.toString())
+      onChange(parsed)
+    }
+  }
 
   return (
     <div className="space-y-3">
@@ -254,24 +298,22 @@ function CalculatorInput({
           {prefix && <span className="text-sm font-medium" style={{ color: COLORS.gold }}>{prefix}</span>}
           <Input
             type="number"
-            value={value}
-            onChange={(e) => {
-              const val = parseFloat(e.target.value)
-              if (!isNaN(val)) {
-                onChange(Math.min(max, Math.max(min, val)))
-              }
-            }}
+            value={inputValue}
+            onChange={handleInputChange}
             onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            className="h-auto w-20 border-0 bg-transparent p-0 text-right text-sm font-bold text-[#E8E8E8] shadow-none focus-visible:ring-0"
+            onBlur={handleInputBlur}
+            className="h-auto w-16 sm:w-24 border-0 bg-transparent p-0 text-right text-sm font-bold text-[#E8E8E8] shadow-none focus-visible:ring-0"
           />
           {suffix && <span className="text-sm font-medium text-[#8A8A8A]">{suffix}</span>}
         </div>
       </div>
       <div className="relative px-1">
         <Slider
-          value={[value]}
-          onValueChange={(val) => onChange(val[0])}
+          value={[Math.min(max, Math.max(min, value))]}
+          onValueChange={(val) => {
+            onChange(val[0])
+            setInputValue(val[0].toString())
+          }}
           min={min}
           max={max}
           step={step}
@@ -657,7 +699,7 @@ export default function FinancialCalculatorDashboard({
             }}
           />
 
-          <Tabs defaultValue="emi" className="relative w-full">
+          <Tabs defaultValue={initialTab} className="relative w-full">
             <TabsList
               className="mx-auto mb-8 grid w-full max-w-md grid-cols-3 gap-1.5 rounded-xl bg-[#1A1A1A] p-1.5"
               style={{ boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.4)' }}
@@ -698,16 +740,6 @@ export default function FinancialCalculatorDashboard({
             </TabsContent>
           </Tabs>
         </div>
-
-        {/* Footer Disclaimer */}
-        <footer className="mt-8 text-center flex gap-1">
-          <TriangleAlert className="text-red-400" />
-          <p className="text-xs text-red-400">
-
-            Calculations are for illustrative purposes only. Actual results may vary based on market conditions.
-            Please consult a financial advisor before making investment decisions.
-          </p>
-        </footer>
       </div>
     </main>
   )

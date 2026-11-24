@@ -38,23 +38,23 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact-form" className="relative min-h-screen bg-[#030303] text-white py-24 sm:py-32 flex items-center">
+    <section id="contact-form" className="relative min-h-screen bg-[#030303] text-white py-14 sm:py-20 md:py-28 flex items-center">
       {/* Fine analog noise overlay */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.012] mix-blend-soft-light bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8">
         {/* Main Content Split Grid */}
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 items-center">
+        <div className="grid grid-cols-1 gap-10 lg:gap-16 lg:grid-cols-12 items-center">
 
           {/* LEFT COLUMN: Clean Stark Typography & Plain Contact Items */}
-          <div className="lg:col-span-5 space-y-12 lg:pr-10">
-            <div className="space-y-6">
+          <div className="lg:col-span-5 space-y-8 sm:space-y-12 lg:pr-10">
+            <div className="space-y-4 sm:space-y-6">
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className={`${titleFont.className} text-6xl sm:text-7xl font-extralight tracking-tight leading-[0.95] text-white`}
+                className={`${titleFont.className} text-4xl sm:text-6xl md:text-7xl font-extralight tracking-tight leading-[0.95] text-white`}
               >
                 Ask for <br />
                 <span className="italic font-serif text-white/90">any</span> <br />
@@ -73,7 +73,7 @@ export default function ContactForm() {
             </div>
 
             {/* Plain text contact items */}
-            <div className="space-y-8 pt-4">
+            <div className="space-y-6 sm:space-y-8 pt-2 sm:pt-4">
               {contactItems.map((item, idx) => (
                 <motion.div
                   key={idx}
@@ -89,12 +89,12 @@ export default function ContactForm() {
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-base font-light text-zinc-300 hover:text-white transition-colors duration-300 block"
+                      className="text-sm sm:text-base font-light text-zinc-300 hover:text-white transition-colors duration-300 block"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <p className="text-base font-light text-zinc-300">
+                    <p className="text-sm sm:text-base font-light text-zinc-300">
                       {item.value}
                     </p>
                   )}
