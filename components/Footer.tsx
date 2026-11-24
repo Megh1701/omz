@@ -19,11 +19,10 @@ import {
 const dynamicWords = ["Growth", "Security", "Protection", "Wealth", "Future"]
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61592838256875&mibextid=wwXIfr&rdid=tG3t7FQL1MUK5kG5&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B5GhLH84E%2F%3Fmibextid%3DwwXIfr#", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/overa_wealth?jplx=bHR6ZTZjcXowaWU1", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/overa-wealth-insurance-marketing-llp/", label: "LinkedIn" },
+  
 ]
 
 const legalLinks = [
@@ -220,8 +219,8 @@ export default function Footer() {
                 <Image src={logo} alt="Overa Logo" className="h-10 w-auto object-contain" priority />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold tracking-wide text-zinc-100" style={{ fontFamily: "var(--font-title)" }}>Overa</span>
-                <span className="text-[10px] text-zinc-500 uppercase tracking-widest">Wealth & Advisory</span>
+                <span className="text-xl font-bold tracking-wide text-zinc-100" style={{ fontFamily: "var(--font-title)" }}>Overa Wealth</span>
+                <span className="text-[10px] text-zinc-500 uppercase tracking-widest">Insurance Marketing LLP</span>
               </div>
             </div>
             <p className="text-sm text-zinc-500 font-light leading-relaxed">
@@ -242,27 +241,14 @@ export default function Footer() {
                   contact@overa.in
                 </span>
               </a>
-              <a
-                href="tel:+919999999999"
-                className="group/item flex items-center gap-3 text-sm transition-all duration-300 hover:translate-x-1"
-              >
-                <motion.div
-                  whileHover={{ rotate: 10, scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <Phone className="h-4 w-4 shrink-0 text-zinc-600 transition-colors duration-300 group-hover/item:text-zinc-400" />
-                </motion.div>
-                <span className="text-zinc-500 transition-colors duration-300 group-hover/item:text-white">
-                  +91 99999 99999
-                </span>
-              </a>
+             
             </div>
           </div>
 
           {/* Column 2: Our Offices */}
           <div className="group space-y-6 lg:pl-8 lg:pr-4">
             <h3 className="relative inline-block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-100">
-              Our Offices
+              Our Office
               <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gradient-to-r from-zinc-300 to-transparent transition-all duration-500 group-hover:w-8" />
             </h3>
             <div className="space-y-6">
@@ -281,41 +267,17 @@ export default function Footer() {
                 </motion.div>
                 <div className="space-y-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 group-hover/item:text-white transition-colors duration-300">Kalol Office (HQ)</span>
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 group-hover/item:text-white transition-colors duration-300">Kalol Office </span>
                     <span className="text-[9px] text-zinc-600 opacity-0 transition-opacity duration-300 group-hover/item:opacity-100 font-light lowercase">(map)</span>
                   </div>
                   <address className="not-italic text-sm text-zinc-500 transition-colors duration-300 group-hover/item:text-zinc-300 leading-relaxed">
-                    126/127, City Mall-1,
+                    127, City Mall-1,
                     <br />
                     Kalol, Gandhinagar
                   </address>
                 </div>
               </a>
-              {/* Ahmedabad Office */}
-              <a
-                href="https://maps.google.com/?q=Vaishnodevi+Circle,+Ahmedabad"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/item flex items-start gap-3 transition-all duration-300 block"
-              >
-                <motion.div
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 350, damping: 8 }}
-                >
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-zinc-600 transition-colors duration-300 group-hover/item:text-zinc-300" />
-                </motion.div>
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 group-hover/item:text-white transition-colors duration-300">Ahmedabad Office</span>
-                    <span className="text-[9px] text-zinc-600 opacity-0 transition-opacity duration-300 group-hover/item:opacity-100 font-light lowercase">(map)</span>
-                  </div>
-                  <address className="not-italic text-sm text-zinc-500 transition-colors duration-300 group-hover/item:text-zinc-300 leading-relaxed">
-                    Vaishnodevi Circle,
-                    <br />
-                    Ahmedabad, Gujarat
-                  </address>
-                </div>
-              </a>
+             
             </div>
           </div>
 
@@ -436,10 +398,7 @@ export default function Footer() {
                   {link.label}
                 </a>
               ))}
-              <div className="group/badge flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[10px] text-zinc-500 transition-all duration-300 hover:border-zinc-700 hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                <Shield className="h-3 w-3" />
-                <span>256-bit Encryption</span>
-              </div>
+            
             </div>
           </div>
         </div>

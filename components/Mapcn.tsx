@@ -12,16 +12,9 @@ const locations = [
   {
     id: 1,
     name: "Kalol Office, Gujarat",
-    address: "126/127, City Mall-1, Kalol, Gandhinagar",
+    address: "127, City Mall-1, Kalol, Gandhinagar",
     lng: 72.501,
     lat: 23.242,
-  },
-  {
-    id: 2,
-    name: "Ahmedabad Office, Gujarat",
-    address: "Vaishnodevi Circle, Ahmedabad",
-    lng: 72.5472,
-    lat: 23.1413,
   },
 ];
 
@@ -31,19 +24,16 @@ export function MarkerMap() {
       {/* Heading Card */}
       <Card className="bg-black border-zinc-800 text-zinc-100">
         <CardHeader>
-          <CardTitle className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Our Offices</CardTitle>
-          <p className="text-zinc-500 text-sm">
-            We operate from two key locations in Gujarat.
-          </p>
+          <CardTitle className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Our Office</CardTitle>
         </CardHeader>
       </Card>
 
       {/* Individual Maps */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-1">
         {locations.map((loc) => (
           <Card
             key={loc.id}
-            className="overflow-hidden bg-black border-zinc-800 text-zinc-100"
+            className="overflow-hidden bg-black border-zinc-800 text-zinc-100 m-20"
           >
             <CardHeader>
               <CardTitle className="text-base">{loc.name}</CardTitle>
@@ -51,7 +41,7 @@ export function MarkerMap() {
             </CardHeader>
 
             <CardContent className="p-0">
-              <div className="h-[300px] w-full">
+              <div className="h-[500px] w-full">
                 <Map center={[loc.lng, loc.lat]} zoom={13}>
                   <MapMarker longitude={loc.lng} latitude={loc.lat}>
                     <MarkerContent>

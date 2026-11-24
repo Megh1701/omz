@@ -105,7 +105,7 @@ function Odometer({
 /* ---------- MAIN SECTION ---------- */
 export default function Numbers() {
   const stats = [
-    { label: "Happy Clients", value: 2700 },
+    { label: "Happy Clients", value: 3500 },
     { label: "Asset Under Management", value: 120, suffix: "₹ Cr" },
     { label: "Live SIP's", value: 420 },
     { label: "Years of Experience", value: 18, suffix: "+" },

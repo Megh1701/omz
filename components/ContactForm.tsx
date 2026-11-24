@@ -19,9 +19,8 @@ export default function ContactForm() {
   });
 
   const contactItems = [
-    { label: "OFFICE HQ", value: "126/127, city mall-1, kalol, gandhinagar" },
-    { label: "PHONE", value: "+91 99999 99999", href: "tel:+919999999999" },
-    { label: "EMAIL", value: "contact@overa.in", href: "mailto:contact@overa.in" },
+    { label: "OFFICE HQ", value: "127, city mall-1, kalol, gandhinagar" },
+    { label: "EMAIL", value: "contact@overawealth.com", href: "mailto:contact@overawealth.com" },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
