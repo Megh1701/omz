@@ -33,7 +33,7 @@ export function MarkerMap() {
         {locations.map((loc) => (
           <Card
             key={loc.id}
-            className="overflow-hidden bg-black border-zinc-800 text-zinc-100 m-20"
+            className="overflow-hidden bg-black border-zinc-800 text-zinc-100 m-0"
           >
             <CardHeader>
               <CardTitle className="text-base">{loc.name}</CardTitle>
