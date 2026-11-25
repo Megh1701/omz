@@ -2,99 +2,99 @@
 
 import { Quote } from 'lucide-react';
 import { normalFont } from '@/app/fonts';
+
 const testimonials = [
   {
     id: 1,
-    quote: 'This product has completely transformed how I work. The attention to detail is incredible.',
-    author: 'Sarah Chen',
-    role: 'Product Designer',
+    quote: 'Overa Wealth helped us find the right health insurance for our family. Their guidance and service were excellent.',
+    author: 'Hetal Patel',
+    role: 'Health Insurance Customer',
   },
   {
     id: 2,
-    quote: 'I was amazed by the quality and the seamless integration. Highly recommended for anyone.',
-    author: 'Marcus Johnson',
-    role: 'Startup Founder',
+    quote: 'The team explained different life insurance plans clearly and helped me understand which policy suited my needs.',
+    author: 'Jayesh Shah',
+    role: 'Life Insurance Customer',
   },
   {
     id: 3,
-    quote: 'Best investment I made this year. The support team is responsive and helpful.',
-    author: 'Elena Rodriguez',
-    role: 'Marketing Manager',
+    quote: 'I wanted to start investing in mutual funds but did not know where to begin. Overa made the entire process easy to understand.',
+    author: 'Kiran Desai',
+    role: 'Mutual Fund Investor',
   },
   {
     id: 4,
-    quote: 'The design is elegant and the performance is outstanding. Really impressed.',
-    author: 'James Wilson',
-    role: 'Tech Lead',
+    quote: 'Renewing my car insurance was quick and hassle-free. I really appreciate the professional support.',
+    author: 'Mitesh Thakkar',
+    role: 'Motor Insurance Customer',
   },
   {
     id: 5,
-    quote: 'Worth every penny. Simple to use yet powerful enough for complex workflows.',
-    author: 'Priya Patel',
-    role: 'Data Scientist',
+    quote: 'We needed a business loan, and the Overa team helped us understand the available options and documentation process.',
+    author: 'Nilesh Parikh',
+    role: 'Business Loan Customer',
   },
   {
     id: 6,
-    quote: 'Finally found something that actually solves the problem. Five stars!',
-    author: 'David Kim',
-    role: 'Operations Director',
+    quote: 'Choosing health insurance for my family became much easier with the right guidance from the Overa team.',
+    author: 'Pooja Mehta',
+    role: 'Health Insurance Customer',
   },
   {
     id: 7,
-    quote: 'The team behind this genuinely cares about their customers. Exceptional experience.',
-    author: 'Lisa Anderson',
-    role: 'HR Specialist',
+    quote: 'Excellent investment guidance, transparent information and responsive service. I had a very good experience with Overa.',
+    author: 'Dhruv Patel',
+    role: 'Mutual Fund Investor',
   },
   {
     id: 8,
-    quote: 'Exceeded all my expectations. The features are intuitive and well-thought-out.',
-    author: 'Robert Taylor',
-    role: 'Consultant',
+    quote: 'The team helped me compare different home loan options and understand the process before making my decision.',
+    author: 'Maulik Shah',
+    role: 'Home Loan Customer',
   },
   {
     id: 9,
-    quote: 'Game-changer for our entire workflow. Productivity has increased significantly.',
-    author: 'Mia Thompson',
-    role: 'Project Manager',
+    quote: 'Having insurance and investment guidance under one roof made financial planning much more convenient for my family.',
+    author: 'Aarti Joshi',
+    role: 'Financial Planning Customer',
   },
   {
     id: 10,
-    quote: 'Phenomenal product with outstanding customer service. Highly satisfied.',
-    author: 'Alex Martinez',
-    role: 'Software Engineer',
+    quote: 'Getting two-wheeler insurance was simple and convenient. The team was quick to respond to all my queries.',
+    author: 'Manan Rawal',
+    role: 'Vehicle Insurance Customer',
   },
   {
     id: 11,
-    quote: 'The value proposition is unmatched. Every feature serves a real purpose.',
-    author: 'Sophie Laurent',
-    role: 'CEO',
+    quote: 'I started investing through SIP and received a clear explanation of investment risks and long-term financial goals.',
+    author: 'Snehal Vyas',
+    role: 'SIP Investor',
   },
   {
     id: 12,
-    quote: 'Simple yet sophisticated. This is how software should be designed.',
-    author: 'Thomas Brown',
-    role: 'UX Researcher',
+    quote: 'The Overa team helped me explore suitable personal loan options. The overall experience was smooth and professional.',
+    author: 'Ankit Patel',
+    role: 'Personal Loan Customer',
   },
   {
     id: 13,
-    quote: 'Incredible solution that has saved us countless hours. Truly transformative.',
-    author: 'Victoria Lee',
-    role: 'Finance Manager',
+    quote: 'We needed group health insurance for our company. The team explained different options and helped us understand the coverage.',
+    author: 'Ronak Gandhi',
+    role: 'Business Owner',
   },
   {
     id: 14,
-    quote: 'The best experience I have had with a product in years. Absolutely stellar.',
-    author: 'Christopher Moore',
-    role: 'Sales Director',
+    quote: 'I received helpful guidance for both insurance and investments. Every question was answered patiently and professionally.',
+    author: 'Divya Trivedi',
+    role: 'Overa Customer',
   },
   {
     id: 15,
-    quote: 'Delivers on every promise. A testament to excellent engineering and design.',
-    author: 'Jessica White',
-    role: 'Brand Strategist',
+    quote: 'The team understood my financial goals and explained suitable investment options. I appreciated their professional approach.',
+    author: 'Parth Bhatt',
+    role: 'Investor',
   },
 ];
-
 function TestimonialCard({
   quote,
   author,
@@ -141,8 +141,8 @@ export default function TestimonialsSection() {
     <section className="w-full py-16 sm:py-20 md:py-24 bg-black overflow-hidden flex flex-col items-center">
       <div className="max-w-7xl mx-auto px-4 mb-10 sm:mb-16 text-center">
         <div className="space-y-3 sm:space-y-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white" 
-          style={{ fontFamily: "var(--font-title)" }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white"
+            style={{ fontFamily: "var(--font-title)" }}>
             Testimonials
           </h2>
           <p className={`${normalFont.className} text-neutral-400 text-sm sm:text-base md:text-lg px-4 max-w-2xl mx-auto font-light`}>

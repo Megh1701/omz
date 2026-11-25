@@ -22,7 +22,7 @@ const socialLinks = [
   { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61592838256875&mibextid=wwXIfr&rdid=tG3t7FQL1MUK5kG5&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B5GhLH84E%2F%3Fmibextid%3DwwXIfr#", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/overa_wealth?jplx=bHR6ZTZjcXowaWU1", label: "Instagram" },
   { icon: Linkedin, href: "https://www.linkedin.com/company/overa-wealth-insurance-marketing-llp/", label: "LinkedIn" },
-  
+
 ]
 
 const legalLinks = [
@@ -241,7 +241,7 @@ export default function Footer() {
                   contact@overa.in
                 </span>
               </a>
-             
+
             </div>
           </div>
 
@@ -277,7 +277,7 @@ export default function Footer() {
                   </address>
                 </div>
               </a>
-             
+
             </div>
           </div>
 
@@ -339,7 +339,7 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-            
+
             <div className="space-y-4 pt-2">
               <div className="flex flex-wrap gap-2.5">
                 {socialLinks.map((social, index) => (
@@ -383,12 +383,12 @@ export default function Footer() {
           <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
             <div className="flex flex-col items-center gap-2 sm:items-start">
               <p className="text-xs text-zinc-500">
-                © {new Date().getFullYear()} Overa. All rights reserved.
+                © {new Date().getFullYear()} Overa Wealth. All rights reserved.
               </p>
               <p className="flex flex-wrap items-center justify-center gap-2 text-[10px] text-zinc-600 sm:justify-start">
                 <span>Registered in India</span>
                 <span className="h-1 w-1 rounded-full bg-zinc-800" />
-            
+
               </p>
             </div>
 
@@ -398,7 +398,7 @@ export default function Footer() {
                   {link.label}
                 </a>
               ))}
-            
+
             </div>
           </div>
         </div>
